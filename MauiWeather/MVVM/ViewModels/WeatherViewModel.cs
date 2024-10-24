@@ -17,6 +17,9 @@ namespace MauiWeather.MVVM.ViewModels
         public string PlaceName { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
 
+        public bool IsVisible { get; set; }
+        public bool IsLoading { get; set; }
+
         private HttpClient client;
 
         public WeatherViewModel()
@@ -37,6 +40,8 @@ namespace MauiWeather.MVVM.ViewModels
         {
             var url = 
                 $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&current=temperature_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin";
+
+            IsLoading = true;
 
             var response =
                  await client.GetAsync(url);
@@ -60,8 +65,10 @@ namespace MauiWeather.MVVM.ViewModels
                         };
                         WeatherData.dailyUnit.Add(dailyUnit);
                     }
+                    IsVisible = true;
                 }
             }
+            IsLoading = false;
         }
 
         private async Task<Location> GetCoordinatesAsync(string address)

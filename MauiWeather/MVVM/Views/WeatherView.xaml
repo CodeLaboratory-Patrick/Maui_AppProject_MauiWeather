@@ -19,21 +19,21 @@
                        SearchCommand="{Binding SearchCommand}"
                        SearchCommandParameter="{Binding Source={x:Reference searchbar}, Path=Text}"/>
         </Grid>
-        
-        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+
+        <VerticalStackLayout Grid.Row="1" 
+                             Style="{StaticResource MainStackLayout}" 
+                             IsVisible="{Binding IsVisible}">
             <Label Text="{Binding PlaceName}" Style="{StaticResource Title}"/>
             <Label Text="{Binding UpdateSourceEventName, StringFormat='{0:MMMM dd, yyyy}'}" />
         </VerticalStackLayout>
         
-        <skia:SKLottieView
-            Grid.Row="2"
-            RepeatCount="-1"
-            Source="{Binding WeatherData.current.weather_code, Converter={StaticResource CodeToLottieConverter}}" />
+        <skia:SKLottieView Grid.Row="2" 
+                           RepeatCount="-1" 
+                           Source="{Binding WeatherData.current.weather_code, Converter={StaticResource CodeToLottieConverter}}" />
         
-        <Grid
-            Grid.Row="3"
-            ColumnDefinitions="*,*,*"
-            IsVisible="{Binding IsVisible}">
+        <Grid Grid.Row="3" 
+              ColumnDefinitions="*,*,*" 
+              IsVisible="{Binding IsVisible}">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Temp" />
                 <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current.temperature_2m, StringFormat='{0}°C'}" />
@@ -54,7 +54,8 @@
             </VerticalStackLayout>
         </Grid>
 
-        <CollectionView Grid.Row="4" ItemsSource="{Binding WeatherData.daily_units}">
+        <CollectionView Grid.Row="4" 
+                        ItemsSource="{Binding WeatherData.daily_units}">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>1</x:String>
@@ -86,5 +87,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Grid Grid.RowSpan="5" 
+            Margin="-15"
+            BackgroundColor="Black"
+            IsVisible="{Binding IsLoading}"
+            Opacity=".9">
+            <ActivityIndicator IsRunning="True" VerticalOptions="Center" />
+        </Grid>
+        
     </Grid>
 </ContentPage>
