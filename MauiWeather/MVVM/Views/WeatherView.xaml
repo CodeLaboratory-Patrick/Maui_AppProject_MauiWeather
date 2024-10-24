@@ -14,8 +14,8 @@
                        SearchCommandParameter="{Binding Source={x:Reference searchbar}, Path=Text}"/>
         </Grid>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
-            <Label Text="Paris" Style="{StaticResource Title}"/>
-            <Label Text="July 08, 2050" />
+            <Label Text="{Binding PlaceName}" Style="{StaticResource Title}"/>
+            <Label Text="{Binding UpdateSourceEventName, StringFormat='{0:MMMM dd, yyyy}'}" />
         </VerticalStackLayout>
         <skia:SKLottieView
             Grid.Row="2"
@@ -24,17 +24,17 @@
         <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                 <Label Text="Temp" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="25°C" Style="{StaticResource WeatherValue}"/>
+                <Label Text="{Binding WeatherData.current_weather.temperature, StringFormat='{0}°C'}" Style="{StaticResource WeatherValue}"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Wind" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="10Km/H" Style="{StaticResource WeatherValue}"/>
+                <Label Text="{Binding WeatherData.current_weather.windspeed, StringFormat='{0}Km/h'}" Style="{StaticResource WeatherValue}"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Weather" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="Sunny" Style="{StaticResource WeatherValue}"/>
+                <Label Text="{Binding WeatherData.current_weather.weathercode}" Style="{StaticResource WeatherValue}"/>
             </VerticalStackLayout>
         </Grid>
 
