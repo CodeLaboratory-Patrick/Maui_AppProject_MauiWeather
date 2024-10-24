@@ -1,4 +1,6 @@
-﻿namespace MauiWeather
+﻿using MauiWeather.MVVM.Views;
+
+namespace MauiWeather
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new WeatherView();
         }
     }
 }
