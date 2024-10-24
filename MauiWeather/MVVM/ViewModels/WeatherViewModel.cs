@@ -48,6 +48,18 @@ namespace MauiWeather.MVVM.ViewModels
                     var data = await JsonSerializer
                          .DeserializeAsync<WeatherData>(responseStream);
                     WeatherData = data;
+
+                    for(int i = 0; i < WeatherData.daily.time.Length; i++)
+                    {
+                        var dailyUnit = new DailyUnit
+                        {
+                            time = WeatherData.daily.time[i],
+                            temperature_2m_max = WeatherData.daily.temperature_2m_max[i],
+                            temperature_2m_min = WeatherData.daily.temperature_2m_min[i],
+                            weather_code = WeatherData.daily.weather_code[i]
+                        };
+                        WeatherData.dailyUnit.Add(dailyUnit);
+                    }
                 }
             }
         }

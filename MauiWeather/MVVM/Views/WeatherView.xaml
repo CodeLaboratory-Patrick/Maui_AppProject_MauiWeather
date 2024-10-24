@@ -28,7 +28,7 @@
         <skia:SKLottieView
             Grid.Row="2"
             RepeatCount="-1"
-            Source="{Binding WeatherData.current_weather.weathercode, Converter={StaticResource CodeToLottieConverter}}" />
+            Source="{Binding WeatherData.current.weather_code, Converter={StaticResource CodeToLottieConverter}}" />
         
         <Grid
             Grid.Row="3"
@@ -36,25 +36,25 @@
             IsVisible="{Binding IsVisible}">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Temp" />
-                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current_weather.temperature, StringFormat='{0}°C'}" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current.temperature_2m, StringFormat='{0}°C'}" />
             </VerticalStackLayout>
             <VerticalStackLayout
                 Grid.Column="1"
                 HorizontalOptions="Center"
                 Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Wind" />
-                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current_weather.windspeed, StringFormat='{0}Km/h'}" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current.wind_speed_10m, StringFormat='{0}Km/h'}" />
             </VerticalStackLayout>
             <VerticalStackLayout
                 Grid.Column="2"
                 HorizontalOptions="Center"
                 Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Weather" />
-                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current_weather.weathercode, Converter={StaticResource CodeToWeatherConverter}}" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding WeatherData.current.weather_code, Converter={StaticResource CodeToWeatherConverter}}" />
             </VerticalStackLayout>
         </Grid>
 
-        <CollectionView Grid.Row="4">
+        <CollectionView Grid.Row="4" ItemsSource="{Binding WeatherData.daily_units}">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>1</x:String>
@@ -77,10 +77,10 @@
                                 IsAnimationEnabled="False"
                                 HeightRequest="50"
                                 WidthRequest="50"
-                                Source="mist.json" />
-                            <Label Text="08-02-2025" TextColor="{StaticResource Yellow100Accent}"/>
-                            <Label Text="25°C" />
-                            <Label Text="Sunny" />
+                                Source="{Binding weather_code, Converter={StaticResource CodeToLottieConverter}}" />
+                            <Label Text="{Binding time}" TextColor="{StaticResource Yellow100Accent}"/>
+                            <Label Text="{Binding temperature_2m_max, StringFormat='{0}°C'}" />
+                            <Label Text="{Binding weather_code, Converter={StaticResource CodeToWeatherConverter}}" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
