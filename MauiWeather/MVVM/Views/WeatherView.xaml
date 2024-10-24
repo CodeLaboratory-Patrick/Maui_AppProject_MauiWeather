@@ -9,7 +9,9 @@
           RowDefinitions=".08*, .1*, .5*, .1*, .3*">
         <Grid>
             <Frame />
-            <SearchBar Placeholder="Search" HorizontalOptions="Center" />
+            <SearchBar Placeholder="Search" HorizontalOptions="Center"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Source={x:Reference searchbar}, Path=Text}"/>
         </Grid>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
             <Label Text="Paris" Style="{StaticResource Title}"/>
