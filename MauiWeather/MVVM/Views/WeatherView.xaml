@@ -15,9 +15,9 @@
           RowDefinitions=".08*,.1*,.5*,.1*,.3*">
         <Grid>
             <Frame />
-            <SearchBar Placeholder="Search" HorizontalOptions="Center"
+            <SearchBar x:Name="searchBar" Placeholder="Search" HorizontalOptions="Center"
                        SearchCommand="{Binding SearchCommand}"
-                       SearchCommandParameter="{Binding Source={x:Reference searchbar}, Path=Text}"/>
+                       SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
         </Grid>
 
         <VerticalStackLayout Grid.Row="1" 
@@ -55,17 +55,8 @@
         </Grid>
 
         <CollectionView Grid.Row="4" 
-                        ItemsSource="{Binding WeatherData.daily_units}">
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>1</x:String>
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
-
+                        ItemsSource="{Binding WeatherData.dailyUnit}">
+            
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
